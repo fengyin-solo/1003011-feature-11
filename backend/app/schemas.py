@@ -28,6 +28,16 @@ class EntryPayload(BaseModel):
     remark: str | None = None
 
 
+class BatchActionResult(BaseModel):
+    """批量动作结果：逐行处理的接口用它带回每行的落记录与退回原因。"""
+
+    ok: bool
+    message: str
+    entry: dict[str, Any] | None = None
+    settled: list[dict[str, Any]] = Field(default_factory=list)
+    rejected: list[dict[str, Any]] = Field(default_factory=list)
+
+
 
 class SiteEntry(BaseModel):
     """基站明细结构。"""
