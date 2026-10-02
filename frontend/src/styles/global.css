@@ -33,3 +33,13 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .link { border: none; background: none; color: var(--brand); cursor: pointer; padding: 0; }
 .page-foot { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; color: var(--muted); }
 .error-text { color: #b42318; }
+.notice-text { color: #067647; }
+.panel { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+.panel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.panel-title { margin: 0; font-size: 14px; }
+.panel-hint { color: var(--muted); font-size: 12px; margin: 4px 0; }
+.panel-actions { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.panel-result { margin: 8px 0 0; font-size: 13px; }
+.panel-rejects { margin: 6px 0 0; padding-left: 18px; color: #b42318; font-size: 12px; }
+.input-cell { width: 90px; }
+.input-cell.wide { width: 160px; }

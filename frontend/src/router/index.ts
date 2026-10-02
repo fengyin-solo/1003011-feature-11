@@ -19,6 +19,7 @@ const Fuel = () => import('@/views/fuel/index.vue')
 const Rental = () => import('@/views/rental/index.vue')
 const Electricbill = () => import('@/views/electricbill/index.vue')
 const Demolition = () => import('@/views/demolition/index.vue')
+const Recycling = () => import('@/views/recycling/index.vue')
 const Emergency = () => import('@/views/emergency/index.vue')
 const Energyeff = () => import('@/views/energyeff/index.vue')
 
@@ -44,6 +45,7 @@ const router = createRouter({
     { path: '/rental', name: 'rental', component: Rental },
     { path: '/electricbill', name: 'electricbill', component: Electricbill },
     { path: '/demolition', name: 'demolition', component: Demolition },
+    { path: '/recycling', name: 'recycling', component: Recycling },
     { path: '/emergency', name: 'emergency', component: Emergency },
     { path: '/energyeff', name: 'energyeff', component: Energyeff },
   ],

@@ -28,6 +28,13 @@ class EntryPayload(BaseModel):
     remark: str | None = None
 
 
+class RecyclingBatchPayload(BaseModel):
+    """批量回收登记：一次勾选同一批拆站任务，逐行登记回收数量与去向。"""
+
+    task_ids: list[int] = Field(default_factory=list)
+    rows: list[dict[str, Any]] = Field(default_factory=list)
+
+
 
 class SiteEntry(BaseModel):
     """基站明细结构。"""
@@ -244,6 +251,18 @@ class DemolitionEntry(BaseModel):
     field_5: str | None = None  # 计划工期
     field_6: str | None = None  # 物资回收
     field_7: str | None = None  # 任务状态
+
+class RecyclingEntry(BaseModel):
+    """物资回收记录明细结构。"""
+
+    field_0: str | None = None  # 记录编号
+    field_1: str | None = None  # 任务编号
+    field_2: str | None = None  # 物资类别
+    field_3: str | None = None  # 回收数量
+    field_4: str | None = None  # 单价
+    field_5: str | None = None  # 回收款
+    field_6: str | None = None  # 物资去向
+    field_7: str | None = None  # 登记时间
 
 class EmergencyEntry(BaseModel):
     """应急保障明细结构。"""

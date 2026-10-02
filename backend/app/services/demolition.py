@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from app.services.recycling import RecyclingService
 from app.store import store
 
 MODULE = "demolition"
@@ -10,6 +11,8 @@ REQUIRED_FIELDS = ["任务编号", "拆除站点", "拆除原因"]
 STATUS_ORDER = ["待审批", "已批复", "拆除中", "已拆除"]
 ACTION_RULES = {"提交审批": "已批复", "开始拆除": "拆除中", "回收完成": "已拆除"}
 NEGATIVE_ACTIONS = []
+
+recycling_service = RecyclingService()
 
 
 class DemolitionService:
@@ -55,6 +58,12 @@ class DemolitionService:
         target = ACTION_RULES[action]
         if target not in STATUS_ORDER:
             return None, f"目标状态「{target}」不在允许的状态序列里"
+        if action == "回收完成":
+            # 物资回收没登记完的任务不许标成已拆除，并告诉现场从哪一类接着填
+            progress = recycling_service.progress_for_task(entry_id)
+            if not progress["登记完成"]:
+                missing = "、".join(progress["未登记类别"])
+                return None, f"物资回收未登记完，不许标成已拆除：还差 {missing}，请从「{progress['接着填']}」接着填"
         entry["status"] = target
         entry["pending"] = target != STATUS_ORDER[-1]
         entry["abnormal"] = action in NEGATIVE_ACTIONS
